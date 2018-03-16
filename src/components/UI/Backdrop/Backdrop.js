@@ -15,7 +15,10 @@ const Backdrop = (props) => {
 
 Backdrop.propTypes = {
   clicked: PropTypes.func,
-  show: PropTypes.bool,
+  show: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.object,
+  ]),
 };
 
 export default Backdrop;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classes from './Modal.css';
 import Aux from '../../../hoc/Aux/Aux';
 import Backdrop from '../Backdrop/Backdrop';
@@ -7,7 +8,11 @@ import Backdrop from '../Backdrop/Backdrop';
 class Modal extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.show !== this.props.show;
+    return (
+      nextProps.show !== this.props.show
+      ||
+      nextProps.children !== this.props.children
+    );
   }
 
   render() {
@@ -34,5 +39,13 @@ class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  show: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.object,
+  ]),
+  modalClosed: PropTypes.func,
+};
 
 export default Modal;
